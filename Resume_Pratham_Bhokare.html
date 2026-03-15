@@ -10,14 +10,16 @@
     --navy: #1a2744;
     --navy-mid: #2e4057;
     --accent: #c8873a;
-    --accent-light: #f0e6d6;
     --text: #1e2433;
     --text-mid: #4a5568;
     --text-light: #718096;
     --border: #dde3ec;
-    --bg: #f7f8fc;
+    --bg: #f0f2f7;
     --white: #ffffff;
-    --tag-bg: #eef1f8;
+    --sidebar-bg: #1e2d4a;
+    --sidebar-muted: rgba(255,255,255,0.50);
+    --tag-bg: rgba(255,255,255,0.10);
+    --tag-border: rgba(255,255,255,0.18);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,281 +35,252 @@
   }
 
   .page {
-    max-width: 860px;
+    max-width: 960px;
     margin: 0 auto;
     background: var(--white);
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 20px 60px rgba(26,39,68,0.10);
+    border-radius: 18px;
+    box-shadow: 0 8px 12px rgba(0,0,0,0.06), 0 24px 72px rgba(26,39,68,0.13);
     overflow: hidden;
     animation: fadeUp 0.5s ease both;
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   /* ── HEADER ── */
   .header {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-    padding: 44px 52px 36px;
+    background: linear-gradient(135deg, var(--navy) 0%, #263652 100%);
+    padding: 40px 48px 32px;
     position: relative;
     overflow: hidden;
   }
   .header::before {
     content: '';
     position: absolute;
-    top: -60px; right: -60px;
-    width: 260px; height: 260px;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.03);
   }
   .header::after {
     content: '';
     position: absolute;
-    bottom: -40px; left: 40%;
-    width: 180px; height: 180px;
+    bottom: -50px; left: 35%;
+    width: 200px; height: 200px;
     border-radius: 50%;
-    background: rgba(200,135,58,0.10);
+    background: rgba(200,135,58,0.08);
   }
-
   .header-name {
     font-family: 'DM Serif Display', serif;
-    font-size: 42px;
-    color: var(--white);
+    font-size: 44px;
+    color: #fff;
     letter-spacing: -0.5px;
     line-height: 1.1;
     margin-bottom: 6px;
-    position: relative;
-    z-index: 1;
+    position: relative; z-index: 1;
   }
-
   .header-tagline {
-    font-size: 13px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.60);
-    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    margin-bottom: 22px;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
   }
-
   .contact-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px 18px;
-    position: relative;
-    z-index: 1;
+    gap: 6px 20px;
+    position: relative; z-index: 1;
   }
-
   .contact-bar a, .contact-bar span {
-    color: rgba(255,255,255,0.80);
+    color: rgba(255,255,255,0.78);
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 400;
+    font-size: 12.5px;
     display: flex;
     align-items: center;
     gap: 5px;
     transition: color 0.2s;
   }
   .contact-bar a:hover { color: var(--accent); }
-  .contact-bar .sep { color: rgba(255,255,255,0.25); user-select: none; }
+  .contact-bar .sep { color: rgba(255,255,255,0.22); user-select: none; }
 
-  .contact-icon { font-size: 12px; opacity: 0.7; }
+  /* ── TWO COLUMN BODY ── */
+  .body {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+  }
 
-  /* ── BODY ── */
-  .body { padding: 36px 52px 48px; }
+  /* ── LEFT SIDEBAR ── */
+  .sidebar {
+    background: var(--sidebar-bg);
+    padding: 36px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
 
-  /* ── SECTION ── */
-  .section { margin-bottom: 30px; }
-  .section:last-child { margin-bottom: 0; }
+  .sidebar .section-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(200,135,58,0.35);
+    margin-bottom: 14px;
+  }
 
-  .section-title {
-    font-size: 10px;
+  .edu-degree {
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 5px;
+  }
+  .edu-school {
+    font-size: 11.5px;
+    color: var(--sidebar-muted);
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+  .edu-meta { display: flex; flex-direction: column; gap: 4px; }
+  .edu-meta span { font-size: 11.5px; color: var(--sidebar-muted); }
+  .edu-meta strong { color: rgba(255,255,255,0.80); font-weight: 600; }
+
+  .skill-block { margin-bottom: 14px; }
+  .skill-block:last-child { margin-bottom: 0; }
+  .skill-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag {
+    background: var(--tag-bg);
+    color: rgba(255,255,255,0.78);
+    font-size: 11px;
+    font-weight: 400;
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid var(--tag-border);
+  }
+
+  .ach-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .ach-item:last-child { margin-bottom: 0; }
+  .ach-icon { font-size: 16px; flex-shrink: 0; }
+  .ach-title {
+    font-weight: 600;
+    font-size: 12px;
+    color: rgba(255,255,255,0.90);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+  .ach-desc {
+    font-size: 11px;
+    color: var(--sidebar-muted);
+    line-height: 1.5;
+  }
+
+  /* ── RIGHT MAIN ── */
+  .main {
+    padding: 36px 38px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .main .section-title {
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--navy-mid);
     padding-bottom: 8px;
     border-bottom: 2px solid var(--navy-mid);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    margin-bottom: 20px;
   }
 
-  /* ── EDUCATION ── */
-  .edu-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-  .edu-degree {
-    font-weight: 600;
-    font-size: 14.5px;
-    color: var(--text);
-  }
-  .edu-date {
-    font-size: 12.5px;
-    color: var(--text-light);
-    font-style: italic;
-    white-space: nowrap;
-  }
-  .edu-school {
-    font-size: 13px;
-    color: var(--text-mid);
-    margin-top: 2px;
-  }
-  .edu-meta {
-    margin-top: 6px;
-    display: flex;
-    gap: 18px;
-  }
-  .edu-meta span {
-    font-size: 12.5px;
-    color: var(--text-mid);
-  }
-  .edu-meta strong { color: var(--text); font-weight: 600; }
-
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    gap: 8px;
-  }
-  .skill-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    font-size: 13.5px;
-  }
-  .skill-label {
-    font-weight: 600;
-    color: var(--navy-mid);
-    min-width: 155px;
-    flex-shrink: 0;
-  }
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  .tag {
-    background: var(--tag-bg);
-    color: var(--text-mid);
-    font-size: 12px;
-    font-weight: 500;
-    padding: 2px 9px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-  }
-
-  /* ── EXPERIENCE ── */
-  .exp-item { margin-bottom: 24px; }
+  .exp-item { margin-bottom: 26px; }
   .exp-item:last-child { margin-bottom: 0; }
 
   .exp-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: baseline;
     flex-wrap: wrap;
-    gap: 2px;
+    gap: 4px;
     margin-bottom: 2px;
   }
-  .exp-role {
-    font-weight: 700;
-    font-size: 14.5px;
-    color: var(--text);
-  }
-  .exp-date {
-    font-size: 12.5px;
-    color: var(--text-light);
-    font-style: italic;
-    white-space: nowrap;
-  }
-  .exp-company {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--navy-mid);
-    margin-bottom: 4px;
-  }
+  .exp-role { font-weight: 700; font-size: 14px; color: var(--text); }
+  .exp-date { font-size: 11.5px; color: var(--text-light); font-style: italic; white-space: nowrap; }
+  .exp-company { font-size: 12.5px; font-weight: 600; color: var(--navy-mid); margin-bottom: 6px; }
+
   .exp-stack {
-    font-size: 12.5px;
+    font-size: 11.5px;
     color: var(--text-light);
-    margin-bottom: 10px;
+    margin-bottom: 14px;
+    background: #f4f6fb;
+    padding: 5px 12px;
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
   }
   .exp-stack strong { color: var(--text-mid); font-weight: 600; }
 
-  .project-block { margin-bottom: 10px; }
+  .project-block { margin-bottom: 12px; }
+  .project-block:last-child { margin-bottom: 0; }
   .project-name {
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 600;
-    color: var(--text);
+    color: var(--navy-mid);
     text-decoration: underline;
     text-underline-offset: 2px;
     text-decoration-color: var(--border);
-    margin-left: 14px;
-    margin-bottom: 3px;
+    margin-left: 10px;
+    margin-bottom: 4px;
   }
-  ul.bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+
+  ul.bullets { list-style: none; padding: 0; margin: 0; }
   ul.bullets li {
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--text-mid);
-    padding: 2px 0 2px 22px;
+    padding: 3px 0 3px 20px;
     position: relative;
     line-height: 1.55;
   }
   ul.bullets li::before {
     content: '▸';
     position: absolute;
-    left: 6px;
+    left: 4px;
     color: var(--accent);
     font-size: 10px;
-    top: 4px;
+    top: 5px;
   }
-  ul.bullets li strong {
-    color: var(--navy-mid);
-  }
+  ul.bullets li strong { color: var(--navy-mid); }
 
-  /* ── ACHIEVEMENTS ── */
-  .ach-item {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 14px;
-    align-items: flex-start;
-  }
-  .ach-item:last-child { margin-bottom: 0; }
-  .ach-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .ach-title {
-    font-weight: 600;
-    font-size: 13.5px;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
-  .ach-desc {
-    font-size: 13px;
-    color: var(--text-mid);
-    line-height: 1.5;
-  }
-
-  /* ── PRINT ── */
   @media print {
     body { background: white; padding: 0; }
     .page { box-shadow: none; border-radius: 0; }
-    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .header, .sidebar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
-  @media (max-width: 600px) {
-    .header, .body { padding-left: 24px; padding-right: 24px; }
-    .header-name { font-size: 30px; }
-    .skill-label { min-width: 120px; }
-    .exp-header { flex-direction: column; }
+  @media (max-width: 680px) {
+    .body { grid-template-columns: 1fr; }
+    .sidebar { padding: 28px 24px; }
+    .main { padding: 28px 24px; }
+    .header { padding: 28px 24px 24px; }
+    .header-name { font-size: 32px; }
   }
 </style>
 </head>
@@ -319,11 +292,11 @@
     <div class="header-name">Pratham Bhokare</div>
     <div class="header-tagline">Software Engineer &nbsp;·&nbsp; Full Stack &nbsp;·&nbsp; ML</div>
     <div class="contact-bar">
-      <a href="/cdn-cgi/l/email-protection#b0c0c2d1c4d8d1ddd2d8dfdbd1c2d582808187f0d7ddd1d9dc9ed3dfdd"><span class="contact-icon">✉</span> <span class="__cf_email__" data-cfemail="5c2c2e3d28343d313e3433373d2e396e6c6d6b1c3b313d3530723f3331">[email&#160;protected]</span></a>
+      <a href="mailto:prathambhokare2017@gmail.com">✉ prathambhokare2017@gmail.com</a>
       <span class="sep">|</span>
-      <a href="tel:+917841885229"><span class="contact-icon">☎</span> +91 78418 85229</a>
+      <a href="tel:+917841885229">☎ +91 78418 85229</a>
       <span class="sep">|</span>
-      <a href="https://www.linkedin.com/in/pratham-bhokare-aab066199/" target="_blank"><span class="contact-icon">in</span> LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pratham-bhokare-aab066199/" target="_blank">in LinkedIn</a>
       <span class="sep">|</span>
       <a href="https://leetcode.com/u/prathambhokare2017/" target="_blank">⌨ LeetCode</a>
       <span class="sep">|</span>
@@ -331,66 +304,82 @@
     </div>
   </div>
 
-  <!-- BODY -->
   <div class="body">
 
-    <!-- EDUCATION -->
-    <div class="section">
-      <div class="section-title">Education</div>
-      <div class="edu-row">
-        <div class="edu-degree">B.E. in Information Technology</div>
-        <div class="edu-date">Aug 2019 – Jun 2023</div>
-      </div>
-      <div class="edu-school">SCTR's Pune Institute of Computer Technology · Pune, India</div>
-      <div class="edu-meta">
-        <span><strong>CGPA:</strong> 9.56</span>
-      </div>
-    </div>
+    <!-- LEFT SIDEBAR -->
+    <div class="sidebar">
 
-    <!-- TECHNICAL SKILLS -->
-    <div class="section">
-      <div class="section-title">Technical Skills</div>
-      <div class="skills-grid">
-        <div class="skill-row">
-          <span class="skill-label">Languages</span>
+      <div>
+        <div class="section-title">Education</div>
+        <div class="edu-degree">B.E. in Information Technology</div>
+        <div class="edu-school">SCTR's Pune Institute of Computer Technology · Pune, India</div>
+        <div class="edu-meta">
+          <span><strong>CGPA:</strong> 9.56</span>
+          <span><strong>Duration:</strong> Aug 2019 – Jun 2023</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Technical Skills</div>
+        <div class="skill-block">
+          <div class="skill-label">Languages</div>
           <div class="skill-tags">
             <span class="tag">Java</span><span class="tag">Python</span><span class="tag">C++</span>
             <span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">Shell Script</span>
           </div>
         </div>
-        <div class="skill-row">
-          <span class="skill-label">Frameworks &amp; Libraries</span>
+        <div class="skill-block">
+          <div class="skill-label">Frameworks & Libraries</div>
           <div class="skill-tags">
             <span class="tag">Spring Boot</span><span class="tag">Spring</span><span class="tag">FastAPI</span>
             <span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Node.js</span>
           </div>
         </div>
-        <div class="skill-row">
-          <span class="skill-label">Cloud &amp; DevOps</span>
+        <div class="skill-block">
+          <div class="skill-label">Cloud & DevOps</div>
           <div class="skill-tags">
             <span class="tag">GCP</span><span class="tag">OpenShift</span><span class="tag">GitHub Actions</span>
             <span class="tag">CI/CD</span><span class="tag">Jenkins</span>
           </div>
         </div>
-        <div class="skill-row">
-          <span class="skill-label">Databases &amp; Tools</span>
+        <div class="skill-block">
+          <div class="skill-label">Databases & Tools</div>
           <div class="skill-tags">
             <span class="tag">Oracle SQL</span><span class="tag">MongoDB</span><span class="tag">Informatica</span>
             <span class="tag">Splunk</span><span class="tag">Git</span><span class="tag">Postman</span>
           </div>
         </div>
-        <div class="skill-row">
-          <span class="skill-label">Other</span>
+        <div class="skill-block">
+          <div class="skill-label">Other</div>
           <div class="skill-tags">
             <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
             <span class="tag">REST APIs</span><span class="tag">Agile/Scrum</span><span class="tag">Unit Testing</span>
           </div>
         </div>
       </div>
+
+      <div>
+        <div class="section-title">Achievements</div>
+        <div class="ach-item">
+          <div class="ach-icon">🏆</div>
+          <div>
+            <div class="ach-title">Individual Excellence Award 2025</div>
+            <div class="ach-desc">Recognized for exceptional performance and high-impact contributions to IB, RFT & STEP compliance technology at Deutsche Bank.</div>
+          </div>
+        </div>
+        <div class="ach-item">
+          <div class="ach-icon">💡</div>
+          <div>
+            <div class="ach-title">800+ DSA Problems Solved</div>
+            <div class="ach-desc">Active problem solver across LeetCode and GeeksforGeeks — demonstrating strong algorithmic and coding fundamentals.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- EXPERIENCE -->
-    <div class="section">
+    <!-- RIGHT MAIN -->
+    <div class="main">
       <div class="section-title">Experience</div>
 
       <!-- Deutsche Bank -->
@@ -401,7 +390,6 @@
         </div>
         <div class="exp-company">Deutsche Bank · Pune, India</div>
         <div class="exp-stack"><strong>Tech Stack:</strong> Java, Spring Boot, GCP, OpenShift, Informatica, Oracle</div>
-
         <div class="project-block">
           <div class="project-name">Informatica Workflow Migration</div>
           <ul class="bullets">
@@ -413,7 +401,7 @@
           <div class="project-name">Automation Budget Data Integration In Reporting Platform</div>
           <ul class="bullets">
             <li>Led complete analysis and development to automate budget data sourcing into revenue reporting platform; closely worked with all stakeholders for requirement gathering.</li>
-            <li><strong>Impact:</strong> Users used to manually load data via upload tools which was error-prone and time-consuming. Automation simplified data loads and reduced processing time to under 2–3 minutes.</li>
+            <li><strong>Impact:</strong> Automation simplified data loads and reduced processing time to under 2–3 minutes.</li>
           </ul>
         </div>
         <div class="project-block">
@@ -432,7 +420,7 @@
         <div class="project-block">
           <div class="project-name">Splunk Dashboard for Workflow Monitoring</div>
           <ul class="bullets">
-            <li>Built Splunk dashboard to monitor running workflows and their states; implemented time-based log search for historical log retrieval.</li>
+            <li>Built Splunk dashboard to monitor running workflows; implemented time-based log search for historical log retrieval.</li>
             <li><strong>Impact:</strong> Saved SL2 team significant time in monitoring workflows.</li>
           </ul>
         </div>
@@ -446,7 +434,6 @@
         </div>
         <div class="exp-company">Algoanalytics · Pune, India</div>
         <div class="exp-stack"><strong>Tech Stack:</strong> AI &amp; ML, Python, PyTorch, TensorFlow, FastAPI</div>
-
         <div class="project-block">
           <div class="project-name">Financial Event Detection And Classification</div>
           <ul class="bullets">
@@ -464,7 +451,6 @@
         </div>
         <div class="exp-company">Persistent Systems · Pune, India</div>
         <div class="exp-stack"><strong>Tech Stack:</strong> Java, Spring Boot</div>
-
         <div class="project-block">
           <div class="project-name">PSL LMS</div>
           <ul class="bullets">
@@ -472,22 +458,9 @@
           </ul>
         </div>
       </div>
-    </div>
 
-    <!-- ACHIEVEMENTS -->
-    <div class="section">
-      <div class="section-title">Achievements</div>
-      <div class="ach-item">
-        <div class="ach-icon">🏆</div>
-        <div>
-          <div class="ach-title">Individual Excellence Award 2025</div>
-          <div class="ach-desc">Recognized for exceptional performance, ownership, and high-impact contributions to IB, RFT &amp; STEP compliance technology at Deutsche Bank.</div>
-        </div>
-      </div>
-      <div class="ach-item">
-        <div class="ach-icon">💡</div>
-        <div>
-          <div class="ach-title">800+ DSA Problems Solved</div>
-          <div class="ach-desc">Active problem solver across LeetCode and GeeksforGeeks — demonstrating strong algorithmic and coding fundamentals.</div>
-        </div>
-      </div>
+    </div><!-- /main -->
+  </div><!-- /body -->
+</div><!-- /page -->
+</body>
+</html>
